@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- Database connection settings, Connect to HSQL, IN Memory -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/ehcachedemo</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password"></property>
+
+		<!-- JDBC connection pool (use the built-in) -->
+		<property name="connection.pool_size">1</property>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<!--create the database schema on startup if required -->
+		<property name="hbm2ddl.auto">create</property>
+		
+		<property name="cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+		<property name="generate_statistics">true</property>
+		<property name="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		<property name="cache.provider_configuration_file_resource_path">ehcache.xml</property>
+		
+<!-- 
+		<property name="cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+		<property name="generate_statistics">true</property>
+		<property name="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		<property name="cache.use_second_level_cache">true</property>
+		<property name="cache.use_query_cache">true</property>
+		<property name="net.sf.ehcache.configurationResourceName">ehcache.xml</property>
+ -->
+		
+		<property name="hbm2ddl.import_files">initial.sql</property>
+		
+		<mapping class="br.com.garcia.cache.model.Person"/>
+	</session-factory>	
+</hibernate-configuration>
